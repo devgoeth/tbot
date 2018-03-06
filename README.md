@@ -46,7 +46,7 @@ And now telegram will be send data to your web-hook action
 
 #### 3. Step
 
-Use web-hook in controller action
+Use web-hook in Yii controller action
 ``` php
 public function actionWebHook(){
     date_default_timezone_set("Europe/Moscow");
@@ -137,7 +137,7 @@ public function inputInput(){
 
 ### Wizard Mode
 
-You can execute command from function in Controllers and create step by step wizards
+You can execute command from function in tbot Controllers and create step by step wizards
 
 ``` php
 public function wizard(){
