@@ -11,7 +11,7 @@ php yii migrate --migrationPath=./vendor/devgoeth/tbot/migrations --interactive=
 ```
 
 # Overview
-Folders and Files:
+Folders and Files: \n
 /var/www/telegram/frontend/components/tbot 
 /var/www/telegram/frontend/components/tbot/config/menu.php
 /var/www/telegram/frontend/components/tbot/config/params.php
@@ -63,9 +63,9 @@ For Example:
 ``` php
 <?php
 return [
-  'noneMenuFunctions' => [
-    ['/start' => 'Default/start'],
-    ['/start2' => 'Default/start'],
+	'noneMenuFunctions' => [
+		['/start' => 'Default/start'],
+		['/start2' => 'Default/start'],
 	],
 	'default' => [
 		['The Button' => 'Default/button'],
@@ -85,32 +85,32 @@ Your can turn on inline mode in message
 
 ``` php
 public function start(){
-		return [
-			'message' => 'Welcome to bot',
-			'keyboard' => [
-				[
-					['text' => 'Label for button', 'callback_data' => 'command']
-				]
-			],
-      'inline' => true
-		];
-	}
+	return [
+		'message' => 'Welcome to bot',
+		'keyboard' => [
+			[
+				['text' => 'Label for button', 'callback_data' => 'command']
+			]
+		],
+		'inline' => true
+	];
+}
 ```
 
 or just link
 
 ``` php
 public function start(){
-		return [
-			'message' => 'Welcome to bot',
-			'keyboard' => [
-				[
-					['text' => 'Google', 'url' => 'https://google.com']
-				]
-			],
-      'inline' => true
-		];
-	}
+	return [
+		'message' => 'Welcome to bot',
+		'keyboard' => [
+			[
+				['text' => 'Google', 'url' => 'https://google.com']
+			]
+		],
+	'inline' => true
+	];
+}
 ```
 ### Input mode
 
