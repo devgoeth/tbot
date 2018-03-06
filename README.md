@@ -80,6 +80,8 @@ return [
 ```
 Where 'Label for Button' => 'controllerName/functionName', all function which execute whithout menu must be in 'noneMenuFunction' array
 
+All controllers for menu array must be in tbot/controllers
+
 
 ### Inline mode
 
