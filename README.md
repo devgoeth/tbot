@@ -1,7 +1,7 @@
 ## Installation
 
 ``` bash
-composer require "devgoeth/tbot @dev" --prefer-dist
+composer require devgoeth/tbot
 ```
 
 ## Execute migration
