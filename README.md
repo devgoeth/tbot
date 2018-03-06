@@ -11,12 +11,13 @@ php yii migrate --migrationPath=./vendor/devgoeth/tbot/migrations --interactive=
 ```
 
 # Overview
-Folders and Files: 
-
-/var/www/telegram/frontend/components/tbot 
+Migration create Folders and Files:
+```
+/var/www/telegram/frontend/components/tbot
 /var/www/telegram/frontend/components/tbot/config/menu.php
 /var/www/telegram/frontend/components/tbot/config/params.php
-/var/www/telegram/frontend/components/tbot/controllers/
+/var/www/telegram/frontend/components/tbot/controllers/DefaultController.php
+```
 
 ## Examples
 You might view example with migration.
