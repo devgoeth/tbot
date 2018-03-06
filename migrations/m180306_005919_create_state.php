@@ -23,7 +23,7 @@ class m180306_005919_create_state extends Migration
         $configMenu = Yii::getAlias('@frontend') . '/components/tbot/config/menu.php';
         $configParams = Yii::getAlias('@frontend') . '/components/tbot/config/params.php';
 
-        $controllersExample = Yii::getAlias('@frontend') . '/components/tbot/controllers/ExampleController.php';
+        $controllersExample = Yii::getAlias('@frontend') . '/components/tbot/controllers/DefaultController.php';
 
         if (!file_exists($components)){
             mkdir($components);
@@ -39,19 +39,22 @@ class m180306_005919_create_state extends Migration
         }
 
         if (!file_exists($configMenu)){
-            $file = "<?php\n" . "return [\n" . "    'start' => [\n" . "\t\t['start' => Default/start']\n" .
+            $file = "<?php\n" . "return [\n" . "\t'start' => [\n" . "\t\t['/start' => 'Default/start']\n" .
+                "\t],\n" . "\t'default' => [\n" . "\t\t['The Button start' => 'Default/start']\n" .
                 "\t],\n" . "];";
             file_put_contents($configMenu, $file);
         }
         if (!file_exists($configParams)){
-            $file = "<?php\n" . "return [\n" . "    'botName' => 'myBot'\n" . "];";
+            $file = "<?php\n" . "return [\n" . "    'token' => ''\n" . "];";
             file_put_contents($configParams, $file);
         }
 
         if (!file_exists($controllersExample)){
             $file = "<?php\n" . "namespace frontend\\components\\tbot\\controllers;\n\n" .
             "use devgoeth\\tbot\\Controller;\n\n" .
-            "class DefaultController extends Controller\n{\n" . "};";
+            "class DefaultController extends Controller\n{\n" . "\tpublic function start(){\n" .
+            "\t\treturn [\n" . "\t\t\t'message' => 'Welcome to bot',\n" .
+            "\t\t\t'keyboard' => 'default'\n" . "\t\t];\n" . "\t}\n" . "};";
             file_put_contents($controllersExample, $file);
         }
         

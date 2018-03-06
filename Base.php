@@ -61,6 +61,11 @@ class Base
     public $markUp = 'html';
 
     /**
+     * Object of state
+     * @var devgoeth\tbot\models\State
+     */
+    public $state;
+    /**
      * Base constructor.
      */
     public function __construct()
@@ -95,35 +100,35 @@ class Base
         }
 
         if (isset($this->params->message->chat->id)) {
-            $state = State::findOne($this->params->message->chat->id);
-            if (!$state){
-                $state->id_user = $this->params->message->chat->id;
-                $state->state = 'bot/start';
-                $state->menu = 'default';
-                $state->save();
+            $this->state = State::findOne($this->params->message->chat->id);
+            if (!$this->state){
+                $this->state = new State();
+                $this->state->id_user = $this->params->message->chat->id;
+                $this->state->state = 'Default/start';
+                $this->state->menu = 'default';
+                $this->state->save();
             }
 
-            $commands = $this->getCommands($this->menuArray[$state->menu]);
+            $commands = $this->getCommands($this->menuArray[$this->state->menu]);
+            $state = '';
 
             if (key_exists(trim($this->params->message->text), $commands)) {
-                $command = explode('/',$commands[$this->params->message->text]);
+                $state = $commands[$this->params->message->text];
             } else {
                 $commands = $this->getCommands($this->menuArray['noneMenuFunctions']);
                 if (key_exists(trim($this->params->message->text), $commands)) {
-                    $command = explode('/',$commands[$this->params->message->text]);
+                    $state = $commands[$this->params->message->text];
+                } else {
+                    if ($this->state->state != '') {
+                        $state = $this->state->state . 'Input';
+                    } else {
+                        $state = 'Default/start';
+                    }
                 }
             }
 
-            if (isset($command[0])) {
-                $class = '\frontend\components\tbot\controllers\\' . $command[0] . 'Controller';
-                $function = $command[1];
 
-                $controller = new $class($this);
-
-                if (method_exists($controller, $function)) {
-                    $result = $controller->{$function}();
-                }
-            }
+            $result = $this->executeCommand($state);
         } else {
             $result['message'] = 'Bot has some error, pls, send it to administrator';
         }
@@ -141,6 +146,49 @@ class Base
         }
 
         die();
+    }
+
+    /**
+     * Executing command from menuArray
+     * @param $state
+     * @return bool
+     */
+    public function executeCommand($state){
+        $command = explode('/', $state);
+        if (isset($command[0])) {
+            $this->state->state = $state;
+
+            $class = '\frontend\components\tbot\controllers\\' . $command[0] . 'Controller';
+            $function = $command[1];
+            if (!class_exists($class)){
+                return false;
+            }
+
+            $controller = new $class($this);
+
+            if (method_exists($controller, $function)) {
+                $result = $controller->{$function}();
+
+                if (is_string($result['keyboard'])) {
+                    $this->state->menu = $result['keyboard'];
+                    if ($result['keyboard'] != 'noneMenuFunctions') {
+                        $result['keyboard'] = $this->menuArray[$result['keyboard']];
+                    } else {
+                        if ($this->state->menu != 'noneMenuFunctions') {
+                            $result['keyboard'] = $this->menuArray[$this->state->menu];
+                        } else {
+                            $result['keyboard'] = $this->menuArray['default'];
+                        }
+                    }
+
+                } else {
+                    $this->state->menu = 'noneMenuFunctions';
+                }
+                $this->state->save();
+            }
+            return $result;
+        }
+        return false;
     }
 
     /**
