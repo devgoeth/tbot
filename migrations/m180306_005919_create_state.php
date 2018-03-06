@@ -39,7 +39,7 @@ class m180306_005919_create_state extends Migration
         }
 
         if (!file_exists($configMenu)){
-            $file = "<?php\n" . "return [\n" . "\t'start' => [\n" . "\t\t['/start' => 'Default/start']\n" .
+            $file = "<?php\n" . "return [\n" . "\t'noneMenuFunctions' => [\n" . "\t\t['/start' => 'Default/start']\n" .
                 "\t],\n" . "\t'default' => [\n" . "\t\t['The Button start' => 'Default/start']\n" .
                 "\t],\n" . "];";
             file_put_contents($configMenu, $file);

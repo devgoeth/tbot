@@ -116,8 +116,13 @@ class Base
                 $state = $commands[$this->params->message->text];
             } else {
                 $commands = $this->getCommands($this->menuArray['noneMenuFunctions']);
-                if (key_exists(trim($this->params->message->text), $commands)) {
-                    $state = $commands[$this->params->message->text];
+                if (preg_match('#^(.*?)\s#', $this->params->message->text, $matches)){
+                    $text = $matches[1];
+                } else {
+                    $text = $this->params->message->text;
+                }
+                if (key_exists($text, $commands)) {
+                    $state = $commands[$text];
                 } else {
                     if ($this->state->state != '') {
                         $state = $this->state->state . 'Input';
