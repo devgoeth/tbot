@@ -1,0 +1,27 @@
+{
+  "name": "devgoeth/tbot",
+  "description": "PHP mini-framework for creating telegram bots.",
+  "keywords": ["Framework","Telegram"],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4",
+    "yiisoft/yii2-httpclient": "^2.0",
+    "telegram-bot/api": "^2.3"
+  },
+  "require-dev": {
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "minimum-stability": "dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "devgoeth\\tbot\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "devgoeth\\tbot\\": ""
+    }
+  }
+}
