@@ -49,7 +49,6 @@ And now telegram will be send data to your web-hook action
 Use web-hook in Yii controller action
 ``` php
 public function actionWebHook(){
-    date_default_timezone_set("Europe/Moscow");
     $bot = new \devgoeth\tbot\Base();
     $bot->webHook();
 }
