@@ -11,7 +11,8 @@ php yii migrate --migrationPath=./vendor/devgoeth/tbot/migrations --interactive=
 ```
 
 # Overview
-Folders and Files: \n
+Folders and Files: 
+
 /var/www/telegram/frontend/components/tbot 
 /var/www/telegram/frontend/components/tbot/config/menu.php
 /var/www/telegram/frontend/components/tbot/config/params.php
@@ -135,7 +136,7 @@ public function inputInput(){
 
 ### Wizard Mode
 
-You can execute command from function and create step by step wizards
+You can execute command from function in Controllers and create step by step wizards
 
 ``` php
 public function wizard(){
