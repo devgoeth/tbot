@@ -67,7 +67,7 @@ For Example:
 return [
 	'noneMenuFunctions' => [
 		['/start' => 'Default/start'],
-		['/start2' => 'Default/start'],
+		['/other' => 'Default/start'],
 	],
 	'default' => [
 		['The Button' => 'Default/button'],
