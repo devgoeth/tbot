@@ -148,7 +148,7 @@ public function wizard(){
 
 ### Base
 
-In Controller you can use base parameter which contain all base parameters include object of Telegram\BotApi https://github.com/TelegramBot/Api
+In Controller you can use base parameter which contain all base parameters include object of TelegramBot\Api https://github.com/TelegramBot/Api
 
 ``` php
 public function myMessage(){
