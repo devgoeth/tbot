@@ -153,7 +153,7 @@ In Controller you can use base parameter which contain all base parametr include
 ``` php
 public function myMessage(){
 	$keyboard = new \TelegramBot\Api\Types\ReplyKeyboardMarkup(array(array("one", "two", "three")), false);
-	$message = 'It's awesome';
+	$message = 'It\'s awesome';
 	
 	// $this->base->markUp = 'html' by default; 
 	$this->base->bot->sendMessage($this->params->message->chat->id, $message, $this->base->markUp, false, null, $keyboard);
