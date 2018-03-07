@@ -13,17 +13,17 @@ php yii migrate --migrationPath=./vendor/devgoeth/tbot/migrations --interactive=
 # Overview
 Migration create Folders and Files:
 ```
-/var/www/telegram/frontend/components/tbot
-/var/www/telegram/frontend/components/tbot/config/menu.php
-/var/www/telegram/frontend/components/tbot/config/params.php
-/var/www/telegram/frontend/components/tbot/controllers/DefaultController.php
+/frontend/components/tbot
+/frontend/components/tbot/config/menu.php
+/frontend/components/tbot/config/params.php
+/frontend/components/tbot/controllers/DefaultController.php
 ```
 
 ## Examples
 You might view example with migration.
 
 #### 1. Step
-Edit /var/www/telegram/frontend/components/tbot/config/params.php and write your apibot token in array of params. 
+Edit /frontend/components/tbot/config/params.php and write your apibot token in array of params. 
 
 ``` php
 <?php
@@ -58,7 +58,7 @@ public function actionWebHook(){
 
 Edit menu array for your buttons
 
-/var/www/telegram/frontend/components/tbot/config/menu.php
+/frontend/components/tbot/config/menu.php
 
 For Example:
 ``` php
