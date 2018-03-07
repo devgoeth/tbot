@@ -46,7 +46,7 @@ And now telegram will be send data to your web-hook action
 
 #### 3. Step
 
-Use web-hook in Yii controller action
+Use web-hook in Yii controller action. Don't forget disable csrf validation for your web-hook action
 ``` php
 public function actionWebHook(){
     $bot = new \devgoeth\tbot\Base();
