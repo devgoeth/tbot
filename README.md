@@ -156,7 +156,13 @@ public function myMessage(){
 	$message = 'It\'s awesome';
 	
 	// $this->base->markUp = 'html' by default; 
-	$this->base->bot->sendMessage($this->params->message->chat->id, $message, $this->base->markUp, false, null, $keyboard);
+	$this->base->bot->sendMessage(
+		$this->params->message->chat->id, 
+		$message, $this->base->markUp, 
+		false, 
+		null, 
+		$keyboard
+	);
 	return [
 		'message' => 'Input value, pls',
 		'keyboard' => 'default',
