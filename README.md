@@ -84,7 +84,7 @@ All controllers for menu array must be in tbot/controllers
 
 ### Inline mode
 
-Your can turn on inline mode in message
+Your can turn on inline mode in message. In tbot Controller function.
 
 ``` php
 public function start(){
@@ -111,7 +111,7 @@ public function start(){
 				['text' => 'Google', 'url' => 'https://google.com']
 			]
 		],
-	'inline' => true
+		'inline' => true
 	];
 }
 ```
@@ -143,5 +143,23 @@ You can execute command from function in tbot Controllers and create step by ste
 ``` php
 public function wizard(){
     return $this->base->executeCommand('Default/input');
+}
+```
+
+### Base
+
+In Controller you can use base parameter which contain all base parametr include object of TelegramApi/Bot https://github.com/TelegramBot/Api
+
+``` php
+public function myMessage(){
+	$keyboard = new \TelegramBot\Api\Types\ReplyKeyboardMarkup(array(array("one", "two", "three")), false);
+	$message = 'It's awesome';
+	
+	// $this->base->markUp = 'html' by default; 
+	$this->base->bot->sendMessage($this->params->message->chat->id, $message, $this->base->markUp, false, null, $keyboard);
+	return [
+		'message' => 'Input value, pls',
+		'keyboard' => 'default',
+	];
 }
 ```
