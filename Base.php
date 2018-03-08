@@ -179,7 +179,6 @@ class Base
                 $result = $controller->{$function}();
 
                 if (is_string($result['keyboard'])) {
-                    $this->state->menu = $result['keyboard'];
                     if ($result['keyboard'] != 'noneMenuFunctions') {
                         $result['keyboard'] = $this->menuArray[$result['keyboard']];
                     } else {
@@ -189,6 +188,7 @@ class Base
                             $result['keyboard'] = $this->menuArray['default'];
                         }
                     }
+                    $this->state->menu = $result['keyboard'];
                 } else {
                     $this->state->menu = 'noneMenuFunctions';
                 }
