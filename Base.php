@@ -133,7 +133,7 @@ class Base
             }
 
 
-            $result = $this->executeCommand($state);
+            $result = $this->executeCommand($state, true);
         } else {
             $result['message'] = 'Bot has some error, pls, send it to administrator';
         }
@@ -156,9 +156,10 @@ class Base
     /**
      * Executing command from menuArray
      * @param $state
+     * @param $step
      * @return bool
      */
-    public function executeCommand($state){
+    public function executeCommand($state, $step = false){
         $command = explode('/', $state);
         $result = [];
         if (isset($command[0])) {
@@ -176,24 +177,30 @@ class Base
             $controller = new $class($this);
 
             if (method_exists($controller, $function)) {
-                $result = $controller->{$function}();
 
+                $result = $controller->{$function}();
+                if (!$step){
+                    return $result;
+                }
                 if (is_string($result['keyboard'])) {
                     if ($result['keyboard'] != 'noneMenuFunctions') {
+                        $this->state->menu = $result['keyboard'];
                         $result['keyboard'] = $this->menuArray[$result['keyboard']];
                     } else {
                         if ($this->state->menu != 'noneMenuFunctions') {
+                            $this->state->menu = $this->state->menu;
                             $result['keyboard'] = $this->menuArray[$this->state->menu];
                         } else {
+                            $this->state->menu = 'default';
                             $result['keyboard'] = $this->menuArray['default'];
                         }
                     }
-                    $this->state->menu = $result['keyboard'];
                 } else {
                     $this->state->menu = 'noneMenuFunctions';
                 }
                 $this->state->save();
             }
+
             return $result;
         }
         return false;
