@@ -160,6 +160,7 @@ class Base
      */
     public function executeCommand($state){
         $command = explode('/', $state);
+        $result = [];
         if (isset($command[0])) {
             $this->state->state = $state;
 
