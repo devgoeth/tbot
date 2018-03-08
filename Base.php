@@ -162,6 +162,9 @@ class Base
         $command = explode('/', $state);
         $result = [];
         if (isset($command[0])) {
+            if (preg_match('#Input$#',$state)){
+                $state = str_replace('Input', '' , $state);
+            }
             $this->state->state = $state;
 
             $class = '\frontend\components\tbot\controllers\\' . $command[0] . 'Controller';
@@ -186,7 +189,6 @@ class Base
                             $result['keyboard'] = $this->menuArray['default'];
                         }
                     }
-
                 } else {
                     $this->state->menu = 'noneMenuFunctions';
                 }
