@@ -196,7 +196,13 @@ class Base
                         }
                     }
                 } else {
-                    $this->state->menu = 'noneMenuFunctions';
+                    if (isset($result['inline'])){
+                        if (!$result['inline']){
+                            $this->state->menu = 'noneMenuFunctions';
+                        }
+                    } else {
+                        $this->state->menu = 'noneMenuFunctions';
+                    }
                 }
                 $this->state->save();
             }
