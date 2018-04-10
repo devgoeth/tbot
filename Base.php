@@ -116,8 +116,10 @@ class Base
                 $state = $commands[$this->params->message->text];
             } else {
                 $commands = $this->getCommands($this->menuArray['noneMenuFunctions']);
-                if (preg_match('#^(.*?)\s#', $this->params->message->text, $matches)){
+                if (preg_match('#^(.*?)\s(.*?)$#', $this->params->message->text, $matches)){
                     $text = $matches[1];
+                    $this->state->parameters = $matches[2];
+                    $this->state->save();
                 } else {
                     $text = $this->params->message->text;
                 }
