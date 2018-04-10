@@ -98,7 +98,11 @@ class Base
         if (isset($this->params->callback_query->data)){
             $this->params->message->text = $this->params->callback_query->data;
         }
-
+        if (!isset($this->params->message->text)){
+            if (isset($this->params->message->caption)){
+                $this->params->message->text = $this->params->message->caption;
+            }
+        }
         if (isset($this->params->message->chat->id)) {
             $this->state = State::findOne($this->params->message->chat->id);
             if (!$this->state){
