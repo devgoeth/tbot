@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id_user
  * @property string $state
  * @property string $menu
+ * @property string $parameters
  * @property string $date
  */
 class State extends \yii\db\ActiveRecord
@@ -30,7 +31,7 @@ class State extends \yii\db\ActiveRecord
         return [
             [['id_user', 'state', 'menu'], 'required'],
             [['id_user'], 'integer'],
-            [['date'], 'safe'],
+            [['date', 'parameters'], 'safe'],
             [['state'], 'string', 'max' => 255],
         ];
     }
