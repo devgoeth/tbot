@@ -11,6 +11,7 @@ class m180306_005919_create_state extends Migration
             'id_user' => $this->integer()->notNull(),
             'state' => $this->string()->notNull(),
             'menu' => $this->string()->notNull(),
+            'parameters' => $this->text(),
             'date' => $this->timestamp()->notNull(),
         ], null);
         $this->addPrimaryKey('id_user_index', 'state', 'id_user');
