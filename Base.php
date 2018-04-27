@@ -263,6 +263,9 @@ class Base
                 $keyboard = new \TelegramBot\Api\Types\ReplyKeyboardMarkup($keyboard, false, true);
             }
             $this->bot->sendMessage($this->params->message->chat->id, $message, $this->markUp, false, null, $keyboard);
+            if (isset($this->params->callback_query)){
+                $this->bot->answerCallbackQuery($this->params->callback_query->id);
+            }
         } catch (\TelegramBot\Api\Exception $e) {
 
         }
