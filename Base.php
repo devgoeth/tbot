@@ -254,7 +254,7 @@ class Base
      * @param null $keyboard
      * @param $inline
      */
-    private function send($message, $keyboard = null, $inline = false ){
+    public function send($message, $keyboard = null, $inline = false ){
         try {
             $this->bot = new \TelegramBot\Api\BotApi($this->config['token']);
             if ($inline){
