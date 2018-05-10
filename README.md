@@ -169,3 +169,15 @@ public function myMessage(){
 	];
 }
 ```
+
+You can access previus comand's parameters.
+
+``` php
+$this->base->state->parameters;
+```
+
+You can send message 
+
+``` php
+$this->base->send($text);
+```
