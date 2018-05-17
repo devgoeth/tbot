@@ -113,7 +113,11 @@ class Base
                 $this->state->save();
             }
 
-            $commands = $this->getCommands($this->menuArray[$this->state->menu]);
+            if ($this->state->menu == 'noneMenuFunctions'){
+                $commands = $this->getAllCommands();
+            } else {
+                $commands = $this->getCommands($this->menuArray[$this->state->menu]);
+            }
             $state = '';
 
             if (key_exists(trim($this->params->message->text), $commands)) {
@@ -197,8 +201,11 @@ class Base
                             $this->state->menu = $this->state->menu;
                             $result['keyboard'] = $this->menuArray[$this->state->menu];
                         } else {
-                            $this->state->menu = 'default';
-                            $result['keyboard'] = $this->menuArray['default'];
+                            $menu = $this->getMenuName($this->state->state);
+                            if ($menu != 'noneMenuFunctions'){
+                                $this->state->menu = $menu;
+                                $result['keyboard'] = $this->menuArray[$menu];
+                            }
                         }
                     }
                 } else {
@@ -232,6 +239,42 @@ class Base
         }
         return $keyboard;
     }
+    
+    /**
+     * Get menu name by state
+     *
+     * @param $state
+     * @return bool|int|string
+     */
+    private function getMenuName ($state){
+        foreach ($this->menuArray as $menuName =>$menus){
+            foreach ($menus as $items) {
+                foreach ($items as $key => $item){
+                    if ($state == $key){
+                        return $menuName;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Turn all menu array in mutual list
+     * @return array
+     */
+    private function getAllCommands (){
+        $commands = [];
+        foreach ($this->menuArray as $menus){
+            foreach ($menus as $items) {
+                foreach ($items as $key => $item){
+                    $commands[$key] = $item;
+                }
+            }
+        }
+        return $commands;
+    }
+    
     /**
      * Turn array in list
      * @param $menus
