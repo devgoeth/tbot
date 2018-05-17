@@ -101,6 +101,10 @@ class Base
         if (!isset($this->params->message->text)){
             if (isset($this->params->message->caption)){
                 $this->params->message->text = $this->params->message->caption;
+            } else {
+                if (isset($this->params->message))
+                    $this->params->message->text = '/start';
+                else die();
             }
         }
         if (isset($this->params->message->chat->id)) {
