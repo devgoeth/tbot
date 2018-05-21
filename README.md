@@ -181,3 +181,8 @@ You can send message
 ``` php
 $this->base->send($text);
 ```
+Also you can disappear keyboard menu. In tbot action use and next message disappear keyboard
+
+``` php
+$this->base->visible = true;
+```
