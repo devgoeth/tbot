@@ -47,4 +47,14 @@ class State extends \yii\db\ActiveRecord
             'date' => 'Date',
         ];
     }
+    
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->date= date('Y-m-d H:i:s', time());
+            return parent::beforeSave($insert);
+        } else {
+            return false;
+        }
+    }
 }
