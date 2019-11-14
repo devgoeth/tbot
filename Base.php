@@ -114,7 +114,7 @@ class Base
                 $this->state->id_user = $this->params->message->chat->id;
                 $this->state->state = 'Default/start';
                 $this->state->menu = 'default';
-                $this->state->date = time();
+                $this->state->date = date('Y-m-d H:i:s', time());
                 $this->state->save();
             }
 
