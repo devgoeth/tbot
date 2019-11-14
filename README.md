@@ -46,7 +46,7 @@ And now telegram will be send data to your web-hook action
 
 #### 3. Step
 
-Use web-hook in Yii controller action. Don't forget disable csrf validation for your web-hook action
+Use web-hook in Yii controller action. Don't forget to disable csrf validation for your web-hook action
 ``` php
 public function actionWebHook(){
     $bot = new \devgoeth\tbot\Base();
@@ -77,7 +77,7 @@ return [
 	]
 ];
 ```
-Where 'Label for Button' => 'controllerName/functionName', all function which execute whithout menu must be in 'noneMenuFunction' array
+Where is 'Label for Button' => 'controllerName/functionName', all function which execute whithout menu must be in 'noneMenuFunction' array
 
 All controllers for menu array must be in tbot/controllers
 
@@ -117,7 +117,7 @@ public function start(){
 ```
 ### Input mode
 
-In tbot/controllers/DefaultController.php (Don't forget create button 'The Input' => 'Default/input' in menu.php)
+In tbot/controllers/DefaultController.php (Don't forget to create button 'The Input' => 'Default/input' in menu.php)
 You must add prefix Input for your function and it will be execute after main function.
 
 ``` php
@@ -181,7 +181,7 @@ You can send message
 ``` php
 $this->base->send($text);
 ```
-Also you can disappear keyboard menu. In tbot action use and next message disappear keyboard
+Also you can disappear keyboard menu. In tbot action use and next message will disappear keyboard
 
 ``` php
 $this->base->visible = true;
