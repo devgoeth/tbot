@@ -70,9 +70,9 @@ class Base
      */
     public function __construct()
     {
-        $this->bot = new \TelegramBot\Api\BotApi($this->config['token']);
         $this->menuArray = require(\Yii::getAlias('@frontend') . '/components/tbot/config/menu.php');
         $this->config = require(\Yii::getAlias('@frontend') . '/components/tbot/config/params.php');
+        $this->bot = new \TelegramBot\Api\BotApi($this->config['token']);
     }
 
     /**
