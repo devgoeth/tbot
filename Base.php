@@ -70,6 +70,7 @@ class Base
      */
     public function __construct()
     {
+        $this->bot = new \TelegramBot\Api\BotApi($this->config['token']);
         $this->menuArray = require(\Yii::getAlias('@frontend') . '/components/tbot/config/menu.php');
         $this->config = require(\Yii::getAlias('@frontend') . '/components/tbot/config/params.php');
     }
@@ -304,7 +305,6 @@ class Base
      */
     public function send($message, $keyboard = null, $inline = false ){
         try {
-            $this->bot = new \TelegramBot\Api\BotApi($this->config['token']);
             if ($inline){
                 $keyboard = new \TelegramBot\Api\Types\Inline\InlineKeyboardMarkup($keyboard);
             } else {
