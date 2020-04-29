@@ -104,7 +104,7 @@ class Base
                 $this->params->message->text = $this->params->message->caption;
             } else {
                 if (isset($this->params->message))
-                    $this->params->message->text = '/start';
+                    $this->params->message->text = '';
                 else die();
             }
         }
